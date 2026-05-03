@@ -18,11 +18,18 @@
             <label for="telefone">Telefone</label>
             <input id="telefone" type="text" name="telefone" value="{{ cliente.telefone if cliente else '' }}" required>
 
+            <label for="senha">Senha</label>
+            <input id="senha" type="password" name="senha" required>
+
             <div class="form-actions">
                 <a href="/clientes" class="btn btn-secondary">Voltar</a>
                 <button type="submit" class="btn btn-primary">{{ submit_label }}</button>
             </div>
         </form>
+
+        {% if cliente %}
+        <p class="demo-hint">Ao editar, informe uma nova senha para o cliente.</p>
+        {% endif %}
     </div>
 </section>
 {% endblock %}

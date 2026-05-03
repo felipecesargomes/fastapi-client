@@ -6,6 +6,13 @@ class ClienteRepositorio:
     def __init__(self, database: BancoDeDadosLocal):
         self.db = database
 
+    async def existe_cliente(self) -> bool:
+        with self.db.conectar() as conexao:
+            cursor = conexao.cursor()
+            cursor.execute("SELECT COUNT(*) FROM clientes")
+            (total,) = cursor.fetchone()
+            return total > 0
+
     async def listar_clientes(self) -> list[Cliente]:
         with self.db.conectar() as conexao:
             cursor = conexao.cursor()
@@ -18,8 +25,8 @@ class ClienteRepositorio:
         with self.db.conectar() as conexao:
             cursor = conexao.cursor()
             cursor.execute(
-                "INSERT INTO clientes (nome, email, telefone) VALUES (?, ?, ?)",
-                (cliente.nome, cliente.email, cliente.telefone),
+                "INSERT INTO clientes (nome, email, telefone, senha) VALUES (?, ?, ?, ?)",
+                (cliente.nome, cliente.email, cliente.telefone, cliente.senha),
             )
             cliente_id = cursor.lastrowid
 
@@ -54,10 +61,10 @@ class ClienteRepositorio:
             cursor.execute(
                 """
                 UPDATE clientes
-                SET nome = ?, email = ?, telefone = ?
+                SET nome = ?, email = ?, telefone = ?, senha = ?
                 WHERE id = ?
                 """,
-                (cliente.nome, cliente.email, cliente.telefone, cliente_id),
+                (cliente.nome, cliente.email, cliente.telefone, cliente.senha, cliente_id),
             )
 
             if cursor.rowcount == 0:
@@ -75,3 +82,17 @@ class ClienteRepositorio:
             cursor = conexao.cursor()
             cursor.execute("DELETE FROM clientes WHERE id = ?", (cliente_id,))
             return cursor.rowcount > 0
+
+    async def autenticar_cliente(self, email: str, senha: str) -> Cliente | None:
+        with self.db.conectar() as conexao:
+            cursor = conexao.cursor()
+            cursor.execute(
+                "SELECT id, nome, email, telefone FROM clientes WHERE email = ? AND senha = ?",
+                (email, senha),
+            )
+            linha = cursor.fetchone()
+
+        if not linha:
+            return None
+
+        return Cliente(id_=linha[0], nome=linha[1], email=linha[2], telefone=linha[3])

@@ -10,10 +10,17 @@
     <nav>
         <a class="logo" href="/front">Techlog Solutions</a>
         <div class="nav-links">
+            {% if usuario_logado %}
             <a href="/clientes">Clientes</a>
+            {% endif %}
             <a href="/docs">API Docs</a>
-            <a href="#">🔑 Login</a>
-            <a href="#">📝 Registrar</a>
+            {% if usuario_logado %}
+            <span>Ola, {{ nome_usuario }}</span>
+            <a class="btn-nav-login" href="/logout">Sair</a>
+            {% else %}
+            <a class="btn-nav-login" href="/login">🔑 Login</a>
+            <a href="/register">📝 Registrar</a>
+            {% endif %}
         </div>
     </nav>
 
@@ -29,7 +36,7 @@
             <div class="icon">👥</div>
             <h3>Gerenciar Clientes</h3>
             <p>Cadastre, visualize e gerencie clientes do sistema.</p>
-            <a href="/clientes">Acessar</a>
+            <a href="{% if usuario_logado %}/clientes{% else %}/login{% endif %}">Acessar</a>
         </div>
         <div class="card">
             <div class="icon">📚</div>
@@ -41,7 +48,12 @@
     {% endblock %}
 
     <footer>
-        &copy; 2025 Techlog Solutions | <a href="#">Fazer Login</a>
+        &copy; 2025 Techlog Solutions |
+        {% if usuario_logado %}
+        <a href="/logout">Sair</a>
+        {% else %}
+        <a href="/login">Fazer Login</a>
+        {% endif %}
     </footer>
 </body>
 </html>

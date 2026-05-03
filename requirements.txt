@@ -3,3 +3,4 @@ jinja2
 uvicorn[standard]
 sqlite-utils
 python-multipart
+itsdangerous

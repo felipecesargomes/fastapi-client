@@ -53,6 +53,17 @@ nav .nav-links a {
 
 nav .nav-links a:hover { color: white; }
 
+nav .nav-links .btn-nav-login {
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.14);
+    padding: 6px 12px;
+    border-radius: 999px;
+}
+
+nav .nav-links .btn-nav-login:hover {
+    background: rgba(255, 255, 255, 0.24);
+}
+
 .hero,
 .page-shell,
 .cards {
@@ -211,6 +222,10 @@ tbody tr:hover {
     padding: 34px;
 }
 
+.auth-card {
+    width: min(560px, 100%);
+}
+
 .form-header {
     margin-bottom: 24px;
 }
@@ -272,6 +287,22 @@ tbody tr:hover {
 .btn-secondary {
     background: var(--surface-soft);
     color: var(--primary-dark);
+}
+
+.alert-error {
+    margin: 8px 0 16px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid #f4b4b4;
+    background: #fff4f4;
+    color: #b02626;
+    font-weight: 600;
+}
+
+.demo-hint {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 0.9rem;
 }
 
 footer {

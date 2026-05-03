@@ -1,6 +1,7 @@
 import sqlite3
 from contextlib import contextmanager
 
+
 class BancoDeDadosLocal():
     def __init__(self, nome_arquivo='bd.db'):
         self.nome_arquivo = nome_arquivo
@@ -26,6 +27,13 @@ class BancoDeDadosLocal():
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     nome TEXT NOT NULL,
                     email TEXT NOT NULL,
-                    telefone TEXT NOT NULL
+                    telefone TEXT NOT NULL,
+                    senha TEXT NOT NULL
                 )
             ''')
+
+            # Migra bancos antigos que ainda nao possuem a coluna senha.
+            cursor.execute("PRAGMA table_info(clientes)")
+            colunas = [coluna[1] for coluna in cursor.fetchall()]
+            if "senha" not in colunas:
+                cursor.execute("ALTER TABLE clientes ADD COLUMN senha TEXT NOT NULL DEFAULT ''")

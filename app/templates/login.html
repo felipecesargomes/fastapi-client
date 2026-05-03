@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+{% block content %}
+<section class="page-shell form-shell">
+    <div class="form-card auth-card">
+        <div class="form-header">
+            <p class="eyebrow">Acesso</p>
+            <h2>Entrar no CRM</h2>
+            <p class="section-copy">Use email e senha de um cliente cadastrado para acessar a página principal.</p>
+        </div>
+
+        {% if erro %}
+        <div class="alert-error">{{ erro }}</div>
+        {% endif %}
+
+        <form method="post" action="/login" class="client-form">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" value="{{ email }}" required>
+
+            <label for="senha">Senha</label>
+            <input id="senha" type="password" name="senha" required>
+
+            <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+
+        {% if pode_registrar %}
+        <p class="demo-hint">Nenhum usuário cadastrado ainda.</p>
+        <div class="form-actions">
+            <a href="/register" class="btn btn-secondary">Registrar primeiro usuário</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
