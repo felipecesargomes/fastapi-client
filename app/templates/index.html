@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techlog Solutions</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav>
+        <span class="logo">Techlog Solutions</span>
+        <div class="nav-links">
+            <a href="#">🔑 Login</a>
+            <a href="#">📝 Registrar</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>🚀 Solutions CRM! 🚀</h1>
+        <p>Explore as funcionalidades do sistema através do menu abaixo.</p>
+        <p class="version">Versão: {{ versao }}</p>
+    </div>
+
+    <div class="cards">
+        <div class="card highlight">
+            <div class="icon">👥</div>
+            <h3>Gerenciar Clientes</h3>
+            <p>Cadastre, visualize e gerencie clientes do sistema.</p>
+            <a href="/clientes">Acessar</a>
+        </div>
+        <div class="card">
+            <div class="icon">📚</div>
+            <h3>Documentação</h3>
+            <p>Acesse a documentação interativa da API.</p>
+            <a href="/docs">Acessar</a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Techlog Solutions | <a href="#">Fazer Login</a>
+    </footer>
+</body>
+</html>
