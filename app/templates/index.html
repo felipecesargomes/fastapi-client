@@ -8,15 +8,18 @@
 </head>
 <body>
     <nav>
-        <span class="logo">Techlog Solutions</span>
+        <a class="logo" href="/front">Techlog Solutions</a>
         <div class="nav-links">
+            <a href="/clientes">Clientes</a>
+            <a href="/docs">API Docs</a>
             <a href="#">🔑 Login</a>
             <a href="#">📝 Registrar</a>
         </div>
     </nav>
 
+    {% block content %}
     <div class="hero">
-        <h1>🚀 Solutions CRM! 🚀</h1>
+        <h1>🚀 Techlog Solutions CRM! 🚀</h1>
         <p>Explore as funcionalidades do sistema através do menu abaixo.</p>
         <p class="version">Versão: {{ versao }}</p>
     </div>
@@ -35,6 +38,7 @@
             <a href="/docs">Acessar</a>
         </div>
     </div>
+    {% endblock %}
 
     <footer>
         &copy; 2025 Techlog Solutions | <a href="#">Fazer Login</a>

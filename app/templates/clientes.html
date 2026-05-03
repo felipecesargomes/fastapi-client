@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% block content %}
+<section class="page-shell">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">CRM</p>
+            <h2>Clientes cadastrados</h2>
+            <p class="section-copy">Acompanhe, revise e atualize os dados dos clientes em um só lugar.</p>
+        </div>
+        <a href="/clientes/novo" class="btn btn-primary">+ Novo cliente</a>
+    </div>
+
+    <div class="table-card">
+        {% if clientes %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                <tr>
+                    <td>#{{ cliente.id_ }}</td>
+                    <td>
+                        <div class="person-cell">
+                            <span class="avatar">{{ cliente.nome[0]|upper }}</span>
+                            <span>{{ cliente.nome }}</span>
+                        </div>
+                    </td>
+                    <td>{{ cliente.email }}</td>
+                    <td>{{ cliente.telefone }}</td>
+                    <td>
+                        <a class="table-link" href="/clientes/{{ cliente.id_ }}/editar">Editar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-state">
+            <h3>Nenhum cliente cadastrado</h3>
+            <p>Comece criando o primeiro registro para preencher a listagem.</p>
+            <a href="/clientes/novo" class="btn btn-primary">Cadastrar cliente</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

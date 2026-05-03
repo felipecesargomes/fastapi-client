@@ -6,7 +6,7 @@ from app.dependecies import obter_cliente_repositorio
 from app.repository.cliente import ClienteRepositorio
 
 router = APIRouter(
-    prefix="/clientes"
+    prefix="/api/clientes"
 )
 
 @router.get("/", response_model=list[Cliente])

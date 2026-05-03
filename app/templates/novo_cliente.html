@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% block content %}
+<section class="page-shell form-shell">
+    <div class="form-card">
+        <div class="form-header">
+            <p class="eyebrow">Cadastro</p>
+            <h2>{{ page_title }}</h2>
+            <p class="section-copy">Preencha os dados abaixo para criar ou atualizar um cliente.</p>
+        </div>
+
+        <form method="post" action="{{ form_action }}" class="client-form">
+            <label for="nome">Nome</label>
+            <input id="nome" type="text" name="nome" value="{{ cliente.nome if cliente else '' }}" required>
+
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" value="{{ cliente.email if cliente else '' }}" required>
+
+            <label for="telefone">Telefone</label>
+            <input id="telefone" type="text" name="telefone" value="{{ cliente.telefone if cliente else '' }}" required>
+
+            <div class="form-actions">
+                <a href="/clientes" class="btn btn-secondary">Voltar</a>
+                <button type="submit" class="btn btn-primary">{{ submit_label }}</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
